@@ -1,0 +1,16 @@
+---
+layout: default
+---
+{%- assign s = site.data.settings -%}
+{%- comment -%} site.posts is already newest first {%- endcomment -%}
+<div class="shortContainer"><h1>{{ s.heading }}</h1></div>
+
+{%- if site.posts.size == 0 %}
+<p class="empty">{{ s.empty }}</p>
+{%- else %}
+<div class="grid">
+  {%- for post in site.posts %}
+  {% include tile.html item=post %}
+  {%- endfor %}
+</div>
+{%- endif %}

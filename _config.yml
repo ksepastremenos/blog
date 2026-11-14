@@ -1,0 +1,31 @@
+title: blog
+url: https://blog.rigascg.com
+
+# Colours: the scrollbar / title gradient goes from light to dark accent.
+accent_light: "#f94a4a"
+accent_dark: "#ff8a3d"
+# Generated tile art: colours are picked around this hue (degrees), +/- spread.
+palette:
+  hue: 6
+  spread: 20
+
+permalink: /:title/
+
+defaults:
+  - scope: { type: posts }
+    values: { layout: post }
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: true # a single line break in the CMS text becomes a line break on the page
+  # keep quotes, dashes and dots exactly as typed
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  typographic_symbols: { hellip: "...", mdash: "---", ndash: "--", laquo: "<<", raquo: ">>", laquo_space: "<< ", raquo_space: " >>" }
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - vendor

@@ -1,0 +1,61 @@
+# Sveltia CMS configuration: https://sveltiacms.app/en/docs
+# Open https://blog.rigascg.com/admin/ and use "Sign In Using Access Token".
+# Every save is a commit to `main`; GitHub Actions rebuilds the site in ~1 minute.
+
+backend:
+  name: github
+  repo: ksepastremenos/blog
+  branch: main
+
+site_url: https://blog.rigascg.com
+display_url: https://blog.rigascg.com
+
+media_folder: images
+public_folder: /images
+
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      max_file_size: 50000000
+      # JPEG/PNG images are converted to WebP (max 2560px) before upload.
+      # Animated GIF/WebP/PNG are left untouched.
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2560
+          height: 2560
+
+editor:
+  preview: false
+
+collections:
+  - name: posts
+    label: Posts
+    label_singular: Post
+    folder: _posts
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    # Jekyll needs the date at the start of the file name.
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date}} · {{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Title, widget: string, hint: "Also used for the page address when creating a post." }
+      - { name: date, label: Date, widget: datetime, type: date }
+      - { name: body, label: Text, widget: markdown, hint: "Images added here open in a lightbox; their description (alt text) becomes the caption." }
+
+  - name: settings
+    label: Settings
+    files:
+      - name: settings
+        label: Interface text
+        file: _data/settings.yml
+        fields:
+          - { name: lang, label: Page language code, widget: string, default: en, hint: "en or el (helps browsers and screen readers)" }
+          - { name: heading, label: Heading, widget: string }
+          - { name: back, label: Back button, widget: string }
+          - { name: empty, label: Text when there are no posts, widget: string }
