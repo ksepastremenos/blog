@@ -46,6 +46,7 @@ collections:
     fields:
       - { name: title, label: Title, widget: string, hint: "Also used for the page address when creating a post." }
       - { name: date, label: Date, widget: datetime, type: date }
+      - { name: video, label: Video, widget: string, required: false, hint: "A YouTube or Vimeo link; shown above the text." }
       - { name: body, label: Text, widget: markdown, hint: "Images added here open in a lightbox; their description (alt text) becomes the caption." }
 
   - name: settings
